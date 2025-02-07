@@ -14,6 +14,17 @@ def show_all(creds):
     df=pd.DataFrame(s1)
     st.dataframe(df, hide_index=True)
 
+def show_one_detail(creds):
+    s1=fetch_prompts(creds)
+    prompt_names=[s.get('prompt_name') for s in s1]
+    prompt_values=[s.get('prompt_value') for s in s1]
+    prompt_map=dict(zip(prompt_names,prompt_values))
+    option = st.selectbox("Prompt",prompt_names,index=None)
+    if option:
+        prv=prompt_map[option]
+        st.text(f"{prv}")
+
+
 def update_one(creds):
     prompt_name=st.text_input("Prompt name")
     prompt_value=st.text_area("Prompt text")
@@ -23,10 +34,12 @@ def update_one(creds):
 
 def main():
     creds=set_up_credentials()
-    col1,col2=st.tabs(['Review','Upsert'])
+    col1,col2,col3=st.tabs(['List','Review','Upsert'])
     with col1:
         show_all(creds)
     with col2:
+        show_one_detail(creds)
+    with col3:
         update_one(creds)
 
 
