@@ -32,7 +32,7 @@ def update_one(creds):
         s=update_prompt_by_name(creds, prompt_name,prompt_value)
         st.write(s)
 
-def main():
+def app_main():
     creds=set_up_credentials()
     col1,col2,col3=st.tabs(['List','Review','Upsert'])
     with col1:
@@ -44,4 +44,4 @@ def main():
 
 
 
-main()
+#app_main()

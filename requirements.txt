@@ -1,4 +1,5 @@
 streamlit
+Authlib
 
 google-cloud-firestore
 google-auth
